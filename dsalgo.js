@@ -45,5 +45,45 @@ function sameRefactor(arr1, arr2){
     }
   }
   return true;
-  
 }
+
+//O(n) time
+
+//Given two strings, write a function to detemine if the second string is an anagram of the first.
+//An anagram is a word, phrase, or name formed by the rearrranging the letters of antother.
+
+//validAnagram("","")
+//validAnagram('aaz','zza')
+//validAnagram('anagram','nagaram')
+//validAnagram('rat','car')
+//validAnagram('awesome','awesom')
+//validAnagram('qwerty','qeywrt')
+//validAnagram('cinema','iceman')
+
+function validAnagram(first, second) {
+  if (first.length !== second.length) {
+    return false;
+  }
+
+  const lookup = {};
+
+  for (let i = 0; i < first.length; i++) {
+    let letter = first[i];
+    // if letter exists, increment, otherwise set to 1
+    lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1;
+  }
+  for (let i = 0; i < second.length; i++) {
+    let letter = second[i];
+    // can't find letter or letter is zero then it's not an anagram
+    if (!lookup[letter]) {
+      return false;
+    } else {
+      lookup[letter] -= 1;
+    }
+  }
+
+  return true;
+}
+
+
+//O(n) time
