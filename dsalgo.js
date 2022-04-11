@@ -189,60 +189,24 @@ function makeTable(str) {
     }
     return table;
   }
-  
-// Find all the words that matches in a given string `str`
-// this algorithm is based on the Knuth–Morris–Pratt algorithm. Its beauty consists in that it performs the matching in O(n)
-// find the prefix table in O(n)
-// `j` is the index in `word(P)`
-// `i` is the index in `str(S)`
-// Case 1.  S[i] == P[j] so we move to the next index in `S` and `P`
-// Case 2.  `j` is equal to the length of `P`
-// that means that we reached the end of `P` and thus we found a match
-// Next we have to update `j` because we want to save some time
-// instead of updating to j = 0 , we can jump to the last character of the longest prefix well known so far.
-// j-1 means the last character of `P` because j is actually `P.length`
-// e.g.
-// S =  a b a b d e
-// P = `a b`a b
-// we will jump to `a b` and we will compare d and a in the next iteration
-// a b a b `d` e
-//  a b `a` b
-// Case 3.
-// S[i] != P[j] There's a mismatch!
-// if we have found at least a character in common, do the same thing as in case 2
-// otherwise, j = 0, and we can move to the next character S[i+1]function kmpMatching(str, word) {
-   
-    var prefixes = makeTable(word);
-    var matches = [];
-    
-    
-    var j = 0;
-    var i = 0;
-    while (i < str.length) {
-      
-      if (str.charAt(i) === word.charAt(j)) {
-        i++;
-        j++;
-      }
-      
-      if (j === word.length) {
-        matches.push(i-j);
-        
-        j = prefixes[j-1];
-      }
-      
-      else if (str.charAt(i) !== word.charAt(j)) {
-          
-          if (j !== 0) {
-              j = prefixes[j-1];
-          } else {
-              
-              i++;
-          }
-      }
+
+
+//Leetcode 1 - Twosum
+// Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+// You may assume that each input would have exactly one solution, and you may not use the same element twice.
+// You can return the answer in any order.
+
+var twoSum = function(nums, target) {
+    const store = {}
+    for(let i = 0; i < nums.length; i++){
+      let cur = nums[i]
+      let diff = target - cur
+      // Return answer if the current number was a diff from a previous number
+      if(store[cur]!==undefined) return [store[cur], i]
+      // Set diff to current index in store
+      else store[diff] = i
     }
-  
-    return matches;
-  }
-console.log(kmpMatching("it implies that it is very important","impo"))
-output: [27]
+};
+
+// Time Complexity : O(n)
+// Space Complexity: O(n)
