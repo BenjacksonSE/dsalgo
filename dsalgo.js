@@ -100,5 +100,28 @@ function sumZero(arr){
     }
 }
 
+//O(n^2) time
 
-// sumZero([-4,-3,-2,-1,0,1,2,5])
+
+//Given an array of storted integers return the first pair that adds up to zero
+
+
+function sumZeroRefactor(arr){
+  let left = 0;
+  let right = arr.length - 1;
+  while(left < right){
+    let sum = arr[left] + arr[right];
+    if(sum === 0){
+      return [arr[left], arr[right]];
+    }
+    else if(sum > 0){
+      right--;
+    }
+    else(
+      sum++
+    )
+  }
+}
+
+// O(n) time
+
