@@ -233,3 +233,12 @@ var twoSum = function(nums, target) {
     // Current and prev change based on i. This chooses the correct curent array
     return k % 2 === 0 ? even[even.length-1] : odd[odd.length-1]
 };
+
+var reverseBits = function(n) {
+    //convert the number to base2 then stringify, split, and reverse 
+    let reversedArray = n.toString(2).split("").reverse()
+    //the converted number may not be 32 digits so pad the end 
+    while(reversedArray.length <32){ reversedArray.push('0')}
+    //join the string, then convert to Integer from base 2
+    return  parseInt(reversedArray.join(""),2) 
+};
